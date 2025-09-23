@@ -1,10 +1,10 @@
-//mengimport data siswa
-const siswa = require('../data/siswa');    //import data siswa
+//import objek siswa
+const siswa = require('../data/siswa');
 
-//menyimpan data tahun lulus dari objek siswa
+//mengambil data tahun lulus dari objek siswa
 let tahun = siswa["tahun lulus"];
 
-//Membuat fungsi untuk menentukan kategori dari data yg diimport
+//Membuat fungsi untuk menentukan kategori
 function findCategory(){
 
 let tahunLulus = tahun;
@@ -24,6 +24,6 @@ else{
 //menjalankan fungsi findCategory untuk melihat output
 //console.log(findCategory());
 
-//mengeksport fungsi findcategory agar bisa digunakan di file lain
+//eksport fungsi findcategory agar bisa digunakan di file lain
 module.exports = findCategory;
 
