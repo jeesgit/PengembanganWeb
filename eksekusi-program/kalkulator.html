@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Prompt</title>
+</head>
+<body>
+    <h2>Kalkulator Prompt</h2>
+    <button onclick="hitung()">Hitung</button>
+    <script>
+        function hitung(){
+            let ekspresi = prompt("Masukkan perhitungan(ex: 4*3):");
+            try{
+                let hasil = eval(ekspresi);
+                alert("Hasil: " + hasil);
+            }
+            catch(e){
+                alert("Perhitungan tidak valid");
+            }
+        }
+    </script>
+</body>
+</html>
