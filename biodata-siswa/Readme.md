@@ -1,10 +1,10 @@
 #   Biodata Siswa
 
 ## Struktur Folder 
-|-- config/     -+ Berisi konstanta global(nama aplikasi), dan dieksport 
+|-- config/     -+ Eksport objek yang berisi nama, versi, dan penanggung jawab 
 |-- data/       -+ Berisi objek siswa, dan dieksport
-|-- logic/      -+ Berisi file logikaKategori untuk menentukan kategori dan file tampilkanBiodata untuk menampilkan biodata. 
-|-- app.js      -+ Import nama aplikasi dan fungsi tampilkanBiodata, kemudian menampilkan nama aplikasi, biodata, dan versi aplikasi
+|-- logic/      -+ Berisi file logikaKategori untuk menentukan kategori dan file tampilkanBiodata untuk menampilkan biodata
+|-- app.js      -+ Import fungsi tampilkanBiodata untuk menampilkan nama aplikasi, biodata, dan versi aplikasi
 |-- Readme.md   -+ DOkumentasi proyek 
 
 ## Cara Menjalankan

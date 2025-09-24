@@ -1,10 +1,9 @@
 /**
- * Biodata Siswa paling sederhana
- * Menampilkan nama aplikasi, biodata, dan versi aplikasi
+ * Import fungsi tampilkanBiodata
+ * Memanggil fungsi tampilkanBiodata untuk menampilkan nama aplikasi, biodata, dan versi aplikasi
  */
-const tampilkanBiodata = require('./logic/tampilkanBiodata'); // import fungsi tampilkan biodata
+const tampilkanBiodata = require('./logic/tampilkanBiodata'); 
 
-//menampilkan nama aplikasi, biodata, versi aplikasi ke terminal
 tampilkanBiodata();
 
 

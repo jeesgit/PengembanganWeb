@@ -1,7 +1,9 @@
 /**
- * Menyimpan nama aplikasi sebagai konstanta, dan mengeksport nama aplikasi
+ * Eksport Objek
  */
 
-const APP_NAME = "BIODATA SISWA";
-
-module.exports = APP_NAME;
+module.exports = {APP_NAME: "BIODATA SISWA",
+    APP_CLOSER: "INFO APLIKASI",
+    APP_VERSI: "1.0.0", 
+    PENANGGUNG_JAWAB: "Balai Pelatihan Vokasi dan Produktivitas Sorong"
+};

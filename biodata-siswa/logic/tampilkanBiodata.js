@@ -1,14 +1,15 @@
-//mengimport data siswa
-const siswa = require('../data/siswa');    //import data siswa
+//import objek
+const aplikasi = require('../config/aplikasi');
 
-const aplikasi = require('../config/aplikasi');    //import nama aplikasi
+//import objek siswa
+const siswa = require('../data/siswa');
 
-//mengimport fungsi findCategory
+//import fungsi findCategory
 const findCategory = require('./logikaKategori');
 
 //membuat fungsi untuk menampilkan biodata
 function tampilkanBiodata(){
-    console.log(`=== ${aplikasi} ===`);
+    console.log(`=== ${aplikasi.APP_NAME} ===`);
     console.log(`Nama               : ${siswa.nama}`);
     console.log(`Umur               : ${siswa.umur}`);
     console.log(`Asal               : ${siswa.asal}`);
@@ -16,14 +17,14 @@ function tampilkanBiodata(){
     console.log(`Tahun Lulus        : ${siswa["tahun lulus"]}`);
     console.log(`Kategori Kondisi   : ${findCategory()}`) ;
     console.log("");
-    console.log("=== INFO APLIKASI ===");
-    console.log(`Versi               : 1.0.0`);
-    console.log(`Penanggung Jawab    : Balai Pelatihan Vokasi dan Produktivitas Sorong`);
+    console.log(`=== ${aplikasi.APP_CLOSER} ===`);
+    console.log(`Versi               : ${aplikasi.APP_VERSI}`);
+    console.log(`Penanggung Jawab    : ${aplikasi.PENANGGUNG_JAWAB}`);
 }
 
 //menjalankan fungsi tampilkanBiodata untuk melihat output
 //tampilkanBiodata();
 
-//mengeksport fungsi tampilkanBiodata agar bisa digunakan di file lain
+//eksport fungsi tampilkanBiodata agar bisa digunakan di file lain
 module.exports = tampilkanBiodata;
 
