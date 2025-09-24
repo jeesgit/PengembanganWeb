@@ -6,3 +6,4 @@ function cetakBiodata(nama, umur, hobi, alamat){
 }
 
 cetakBiodata("Gardenia", 20, "Nyanyi", "Jl. Guntur");
+

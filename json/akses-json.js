@@ -19,3 +19,4 @@ fs.writeFileSync("data.json", JSON.stringify(data, null, 2));
 
 console.log("Data berhasil ditambahkan dan disimpan ulang");
 console.log("Isi akhir : ", data);
+

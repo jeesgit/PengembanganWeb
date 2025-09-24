@@ -3,5 +3,5 @@ try{
     console.log("Hasil: ", hasil);
 }
 catch(error){
-    console.log("kesalahan: ", error.message);
+    console.error("kesalahan: ", error.message);
 }

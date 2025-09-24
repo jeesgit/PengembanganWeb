@@ -1,6 +1,6 @@
 let nilai = [75,88,92];
 
-console.log("1. Nilai awal:");
+console.log(". Nilai awal:");
 nilai.forEach((n, i)=>{
     console.log(`Siswa ${i + 1} : ${n}`);
 });
