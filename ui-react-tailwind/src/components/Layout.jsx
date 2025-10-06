@@ -1,7 +1,7 @@
-function Layout() {
+function Layout({children}) {
   return (
     <div>
-      <main className="flex-1 p-6 w-full max-w-6x1 mx-auto min-h-screen">
+      <main className="flex-1 p-6 w-full max-w-6xl mx-auto min-h-screen">
         {children}
       </main>
     </div>

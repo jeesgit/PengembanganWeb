@@ -2,12 +2,12 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { baseUrl } from "../../config/Constants";
 import { AuthContext } from "../../context/AuthContext";
-import Form from '../../components/Form';
+import Form from "../../components/Form";
 import axios from "axios";
 import Swal from 'sweetalert2';
 
 function FormPeserta(){
-    const { id } = useNavigate();
+    const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const {user} = useContext(AuthContext);
@@ -45,6 +45,10 @@ function FormPeserta(){
                 await axios.put(`${baseUrl}/peserta/${id}`, formData,{
                     headers: {Authorization:`Bearer ${user.accessToken}`},
                 });
+            }else{
+                await axios.post(`${baseUrl}/peserta`, formData, {
+                    headers:{Authorization: `Beares ${user.accessToken}`},
+                });
             }
 
             Swal.fire("Sukses", "Data berhasil disimpan", "success");
@@ -56,7 +60,8 @@ function FormPeserta(){
 
     return(
         <div className="p-6">
-           <Form data={data} mode={mode} onSubmit={handleSubmit}
+           <Form 
+           data={data} mode={mode} onSubmit={handleSubmit}
            onClose={()=> navigate("/peserta")} />
         </div>
     );

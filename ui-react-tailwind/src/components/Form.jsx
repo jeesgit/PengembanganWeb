@@ -1,5 +1,6 @@
 import { useParams, useNavigate} from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { baseUrl } from "../config/Constants";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -11,7 +12,7 @@ function Form({mode = "create"}){
     const [form, setForm] = useState({name: "", status: "aktif"});
     const {id} = useParams();
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const isReadOnly = mode === "view";
 
@@ -24,10 +25,13 @@ function Form({mode = "create"}){
     
             useEffect(()=>{
                 if((mode ==="edit" || mode === "view") && id){
-                    axios.get(`${baseUrl}/peserta/${id}`).then((res)=>{
+                    axios
+                    .get(`${baseUrl}/peserta/${id}`)
+                    .then((res)=>{
                         const {name, status}= res.data.data;
                         setForm({name, status});
-                    }).catch(()=>{
+                    })
+                    .catch(()=>{
                         Swal.fire("Error", "Gagal mengambil data", "error");
                         navigate("/peserta");
                     });
@@ -41,26 +45,26 @@ function Form({mode = "create"}){
             const handleSubmit = async (e)=>{
                 e.preventDefault();
                 try{
-                    if(mode==="create"){
+                    if(mode ==="create"){
                         await axios.post(`${baseUrl}/peserta`, form,{
                             headers:{Authorization:`Bearer ${user.accessToken}`},
                         });
                     }else if(mode === "edit" && id){
-                        await axios.put(`${baseUrl}/peserta`, form,{
+                        await axios.put(`${baseUrl}/peserta/${id}`, form,{
                             headers:{Authorization:`Bearer ${user.accessToken}`},
                         });
                     }
-                    Swal.fire("Berhasil", "Data berhasil disimpan", "success");
+                    Swal.fire("Berhasil", "Data peserta disimpan", "success");
                     navigate("/peserta");
                 }catch(err){
-                    Swal.fire("Gagal", err.response?.message || "terjadi kesalahan", "error");
+                    Swal.fire("Gagal", err.response?.data?.message || "terjadi kesalahan", "error");
                 }
             };
 
             return(
-                <div className="p-6 max-w-x1 mx-auto">
+                <div className="p-6 max-w-xl mx-auto">
                     <div className="bg-white p-6 rounded-lg shadow">
-                        <h2 className="text-x1 fonrt-semibold text-blue-700 mb-4">{title}</h2>
+                        <h2 className="text-xl font-semibold text-blue-700 mb-4">{title}</h2>
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4" action="">
                             <Input 
                             name="name"
@@ -87,9 +91,9 @@ function Form({mode = "create"}){
                                         Simpan
                                     </Button>
                                 )}
-                                <Button type="button" variant="secondary" onClick={()=>{
+                                <Button type="button" variant="secondary" onClick={()=>
                                     navigate("/peserta")
-                                }}>Kembali</Button>
+                                }>Kembali</Button>
 
                             </div>
                         </form>

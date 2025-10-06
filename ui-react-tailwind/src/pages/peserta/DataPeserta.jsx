@@ -32,10 +32,10 @@ function DataPeserta(){
     };
 
     const handleDelete = async (peserta)=>{
-        const konfirmasi = confirm(`Hapus ${peserta.nama}?`);
+        const konfirmasi = confirm(`Hapus ${peserta.name}?`);
         if(!konfirmasi) return;
         try{
-            await axios.delete(`${baseUrl}/peserta/${peserta.id}`,{headers:{Authorization: `Bearer ${user.accessToken}`}});
+            await axios.delete(`${baseUrl}/peserta/${peserta.id}`,{headers:{Authorization: `Bearer ${user.accessToken}`},});
             fetcData();
             Swal.fire("Berhasil", "Peserta telah dihapus", "succes");
         }catch(err){
@@ -49,12 +49,12 @@ function DataPeserta(){
         {header: 'Status', accessor: 'status'},
         {
             header: 'Aksi',
-            accessor:'action',
+            accessor:'actions',
             render:(row)=> (
                 <div className="flex gap-2">
-                    <button variant="secondary" onClick={()=> navigate(`/peserta/view/${row.id}`)}>View</button>
-                    <button variant="success" onClick={()=> navigate(`/peserta/edit/${row.id}`)}>Edit</button>
-                    <button variant="danger" onClick={()=> handleDelete(row)}>Hapus</button>
+                    <Button variant="secondary" onClick={()=> navigate(`/peserta/view/${row.id}`)}>View</Button>
+                    <Button variant="success" onClick={()=> navigate(`/peserta/edit/${row.id}`)}>Edit</Button>
+                    <Button variant="danger" onClick={()=> handleDelete(row)}>Hapus</Button>
                 </div>
             ),
         },
@@ -62,11 +62,11 @@ function DataPeserta(){
 
     return(
         <div>
-            <h2 className="text-2x1 fonr-semibold mb-4 text-blue-700">Data Peserta</h2>
+            <h2 className="text-2xl fonr-semibold mb-4 text-blue-700">Data Peserta</h2>
             <div className="mb-4">
-                <button onClick={()=>navigate('/pesereta/tambah')}>Tambah Peserta</button>
+                <Button onClick={()=>navigate('/pesereta/tambah')}>Tambah Peserta</Button>
             </div>
-            {loading ? <p> Loading...</p>: <table columns = {columns} data = {peserta} />}
+            {loading ? <p> Loading...</p>: <Table columns = {columns} data = {peserta} />}
         </div>
     );
 }

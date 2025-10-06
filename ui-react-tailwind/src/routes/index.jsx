@@ -1,31 +1,31 @@
-import { Children, useContext } from "react";
+import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import DataPeserta from "../pages/peserta/DataPeserta";
 import FormPeserta from "../pages/peserta/FormPeserta";
 import Home from '../pages/Home';
-import Register from "../pages/register";
-import Login from "../pages/login";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
 import Layout from "../components/Layout";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 export default function App(){
     const {user} = useContext(AuthContext);
 
-    const LoginRoute = ({Children})=>{
+    const LoginRoute = ({children})=>{
         if(user === null){
-            return Children
+            return children
         }else{
             return <Navigate to="/" />
         }
     }
 
-    const PrivateRoute = ({Children})=>{
+    const PrivateRoute = ({children})=>{
         if(user === null){
             return <Navigate to="/login" />
         }else{
-            return Children
+            return children
         }
     }
 
@@ -46,13 +46,23 @@ export default function App(){
 
                     <Route path="/register" element={<LoginRoute><Register /></LoginRoute>}/>
 
-                    <Route path="/login" element={<LoginRoute><Login /></LoginRoute>}/>
+                    <Route path="/login" element={<LoginRoute> <Login /> </LoginRoute>}/>
+
+                    <Route path="/users" element={<LoginRoute> <Login /> </LoginRoute>}/>
+
+                    <Route path="/siswa" element={<LoginRoute> <Login /> </LoginRoute>}/>
+
+                    <Route path="/pegawai" element={<LoginRoute> <Login /> </LoginRoute>}/>
+
+                    <Route path="/presensi-siswa" element={<LoginRoute> <Login /> </LoginRoute>}/>
+
+                    <Route path="/presensi-pegawai" element={<LoginRoute> <Login /> </LoginRoute>}/>
 
                     <Route path="*" element={<NoMatch />}/>
                     
                 </Routes>
             </Layout>
-            <Footer />
+            <Footer/>
         </BrowserRouter>
     );
 }
@@ -60,7 +70,7 @@ export default function App(){
 function NoMatch(){
     return (
         <div>
-            <head>Nothing to see here!</head>
+            <h2>Nothing to see here!</h2>
             <p>
                 <Link to="/">Go to the home page</Link>
             </p>

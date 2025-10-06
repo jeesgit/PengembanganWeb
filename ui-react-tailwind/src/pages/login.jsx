@@ -12,17 +12,16 @@ function Login({onSwitchToRegister, onClose }){
     const [form, setForm] = useState({email: '', password: ''});
 
     //membuat string kosong sebagai nilai state status
-    const [status,setStatus] = useState('');
+    const [status, setStatus] = useState('');
 
     const { setUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
-    const handleChange = (e)=>{
+    const handleChange = (e)=>
         setForm({...form, [e.target.name]:e.target.value});
-    }
-
-    const handleSubmit = async(e)=>{
+    
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         setStatus('Memproses...');
         try{
@@ -32,7 +31,7 @@ function Login({onSwitchToRegister, onClose }){
 
             localStorage.setItem("user", JSON.stringify(dataLogin));
             setUser(dataLogin);
-            setStatus('Login berhasil');
+            setStatus('Login berhasil!');
             if(onClose) onClose();
             navigate('/');
         }
@@ -42,18 +41,16 @@ function Login({onSwitchToRegister, onClose }){
     };
     return (
         <div>
-            <h2 className="text-2x1 font-semibold mb-4 text-blue-600 text-center">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-600 text-center">
                 Form Login
             </h2> 
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4" action="">
-                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required id="email" />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <Input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required  />
 
-                <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="password" required id="password" />
+                <Input type="password" name="password" value={form.password} onChange={handleChange} placeholder="password" required />
 
-                <button type="submit" variant="primary">
-                    Kirim
-                </button>
+                <Button type="submit" variant="primary">Kirim</Button>
 
                 {status && <p className="text-sm text-center text-gray-700">{status}</p>}
 

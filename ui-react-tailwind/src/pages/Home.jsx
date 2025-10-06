@@ -1,11 +1,10 @@
-
 function Home() {
   return (
     <div>
-        <h2 className="text-2x1 font-bold">
+        <h2 className="text-2xl font-bold mb-2">
                 Beranda
             </h2> 
-            <p>Selamat datang di aplikasi USer Interface berbasis React</p>
+            <p>Selamat datang di aplikasi User Interface berbasis React</p>
     </div>
   );
 }

@@ -13,4 +13,4 @@ function Input({name, value, onChange, placeholder, required, readOnly}) {
   );
 }
 
-export default Input
+export default Input;

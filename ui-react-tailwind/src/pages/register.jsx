@@ -4,7 +4,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import axios from 'axios';
 
-function Register({onSwitchToRegister}){
+function Register({onSwitchToLogin}){
     const [form, setForm] = useState({
         nama: '', email: '',password: ''
     });
@@ -25,20 +25,20 @@ function Register({onSwitchToRegister}){
     };
     return (
         <div>
-            <h2 className="text-2x1 font-semibold mb-4 text-blue-600 text-center">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-600 text-center">
                 Form Pendaftaran
             </h2> 
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4" action="">
-                <input type="text" name="nama" value={form.nama} onChange={handleChange} placeholder="Nama" required id="nama" />
+                <Input type="text" name="nama" value={form.nama} onChange={handleChange} placeholder="Nama" required id="nama" />
 
-                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required id="email" />
+                <Input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required id="email" />
 
-                <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Password" required id="password" />
+                <Input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Password" required id="password" />
 
-                <button type="submit" variant="primary">
+                <Button type="submit" variant="primary">
                     Kirim
-                </button>
+                </Button>
                 </form>
                 {status && <p className="text-sm text-center text-gray-700">{status}</p>}
                 <div className="text-center mt-4">

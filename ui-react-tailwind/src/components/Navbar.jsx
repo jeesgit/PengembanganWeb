@@ -15,10 +15,10 @@ function Navbar(){
 
     return (
         <nav className="sticky top-0 bg-blue-600 text-white shadow-md w-full">
-            <div className="max-w-7x1 mx-auto px-4 py-3 flex justify-between items-center">
+            <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 <h1 className="font-bold text-lg">Job Sheet</h1>
                 <button className="lg:hidden" onClick={()=>setMenuOpen(!menuOpen)}>
-                    {menuOpen ? <X size={24} />: <Menu size={24} />}
+                    {menuOpen ? <X size={24}/> : <Menu size={24} />}
                 </button>
 
             <ul className="hidden lg:flex gap-6 items-center">
@@ -48,18 +48,17 @@ function Navbar(){
                             <Link to="/peserta" onClick={()=> setMenuOpen(false)} className="hover:underline">Data Peserta</Link>
                         </li>
 
-                      
-                         user === null ? (
+                        
+                         {user === null ? (
                             <>
-                                <li>
-                                    <span className="font-medium">{user.email}</span>
-                                </li>
-                                <li>
-                                    <button onClick={handleLogout} className="hover:underline">Logout</button>
-                                </li>
+                               <li><Link to="/login" onClick={()=> setMenuOpen(false)} className="hover:underline">Login</Link></li>
                             </>
-                        );
-                    
+                        ):(
+                            <>
+                                <li><span className="font-medium">{user.email}</span></li>
+                                <li><button onClick={handleLogout} className="hover:underline">Logout</button></li>
+                            </>
+                        )}
                     </ul>
                 </div>
             )}
