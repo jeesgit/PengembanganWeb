@@ -1,4 +1,5 @@
 import TabelPresensi from "../components/TabelPresensi";
+import ModalEditPresensi from "../components/modalEditPresensi";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 
@@ -7,6 +8,7 @@ export default function App(){
         <BrowserRouter>
             <Routes>
                 <Route path="/presensi" element={<TabelPresensi/>} />
+                <Route path="/modal-presensi" element={<ModalEditPresensi/>} />
                 <Route path="*" element={<NoMatch/>} />
             </Routes>
         </BrowserRouter>

@@ -1,69 +1,98 @@
 import { Plus } from "lucide-react";
+import { useState } from "react";
 import './TabelPresensi.css';
+import $ from 'jquery';
 
 function TabelPresensi(){
-    
-    // Ambil elemen
-    const openBtn = document.getElementById('openModal');
-    const closeBtn = document.getElementById('closeModal');
-    const modal = document.getElementById('myModal');
 
-    // Tampilkan modal
-    openBtn.addEventListener('click', ()=>{
-        modal.classList.remove('hidden');
-    });
+    $(document).ready(function(){
+        //Javascript modal detail mulai dari sini
+        // Ambil elemen
+      const openModalDetail = document.getElementById("openModalDetail");
+      const closeModalDetail = document.getElementById("closeModalDetail");
+      const modalDetail = document.getElementById("modalDetail");
+      const okDetail = document.getElementById("okDetail");
 
-    // Sembunyikan modal
-    closeBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
+      // Buka modal
+      openModalDetail.addEventListener("click", () => {
+        modalDetail.classList.remove("hidden");
+      });
 
-    // Klik di luar modal juga menutup modal
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-      }
+      // Tutup modal
+      closeModalDetail.addEventListener("click", () => {
+        modalDetail.classList.add("hidden");
+      });
+
+      okDetail.addEventListener("click", () => {
+        modalDetail.classList.add("hidden");
+      });
+
+      // Tutup modal kalau klik di luar box
+      modalDetail.addEventListener("click", (e) => {
+        if (e.target === modalDetail) {
+          modalDetail.classList.add("hidden");
+        }
+      });
     });
     return (
         <div>
-            <div id="myModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                <div class="bg-white p-6 rounded shadow-lg w-96">
-                <h2 class="text-xl font-semibold mb-4">Detail Presensi</h2>
-                <div>
-                    <table className="table-auto w-full">
-                        <tr className="flex justify-between">
-                            <td>Nama</td>
-                            <td>Jees</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Jam Masuk</td>
-                            <td>07:30</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Jam Pulang</td>
-                            <td>16:00</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Status Presensi</td>
-                            <td>Hadir</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Keterangan :</td>
-                        </tr>
-                        <tr className="flex justify-between text-start">
-                            <td>
-                                Tepat Waktu adalah sikap yang patut dicontoh oleh banyak orang
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="flex justify-end">
-                    <button id="closeModal" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-                    Tutup
-                    </button>
-                </div>
-                </div>
+            {/*komponen detail mulai dari sini*/}
+            <div
+      id="modalDetail"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    >
+      <div class="bg-white rounded-xl shadow-lg w-96 p-6 relative">
+        
+        <button
+          id="closeModalDetail"
+          class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        >
+          ✕
+        </button>
+
+        <h2 class="text-xl font-semibold mb-4">Detail Presensi</h2>
+        <div>
+            <form class="space-y-3">
+
+            <div class="flex justify-between border-b border-gray-200 pb-1">
+                <label class="text-gray-600">Nama</label>
+                <span class="font-medium text-gray-800">Jees</span>
             </div>
+
+            <div class="flex justify-between border-b border-gray-200 pb-1">
+                <label class="text-gray-600">Jam Masuk</label>
+                <span class="font-medium text-gray-800">07:30</span>
+            </div>
+
+            <div class="flex justify-between border-b border-gray-200 pb-1">
+                <label class="text-gray-600">Jam Pulang</label>
+                <span class="font-medium text-gray-800">16:30</span>
+            </div>
+
+            <div class="flex justify-between border-b border-gray-200 pb-1">
+                <label class="text-gray-600">Status Presensi</label>
+                <span class="font-medium text-green-600">Hadir</span>
+            </div>
+
+            <div className="text-start">
+                <label class="text-gray-600">Keterangan :</label>
+                <p class="mt-1 text-gray-800 text-sm leading-snug">
+                Tepat Waktu, tidak terlambat, kerjakan tugas, patuhi aturan
+                </p>
+            </div>
+            </form>
+        </div>
+            <div className="flex justify-end">
+                <button
+                id="okDetail"
+                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:cursor-pointer"
+                >
+                Oke
+                </button>
+            </div>
+        </div>
+    </div>  
+    {/*..*/}
 
             <div className="bg-blue-700 text-white hover:cursor-pointer">
                 <Plus className="inline" /> Tambah Presensi 
@@ -90,8 +119,9 @@ function TabelPresensi(){
                         <td>Hadir</td>
                         <td className="hidden sm:table-cell">Tepat Waktu</td>
                         <div className="flex flex-wrap justify-evenly">
-                            <td><button id="openModal" type="button" className="detail bg-gray-500 w-13 text-white text-sm rounded hover:cursor-pointer">Detail</button></td>
-                            <td><button type="button" className=" bg-green-500 w-13 text-white text-sm rounded hover:cursor-pointer">Edit</button></td>
+                            <td><button id="openModalDetail" type="button" className="detail bg-gray-500 w-13 text-white text-sm rounded hover:cursor-pointer">Detail</button></td>
+                            <td><button 
+                             type="button" className=" bg-green-500 w-13 text-white text-sm rounded hover:cursor-pointer">Edit</button></td>
                             <td><button type="button" className=" bg-red-500 w-13 text-white text-sm rounded hover:cursor-pointer">Hapus</button></td>
                         </div>
                     </tr>
