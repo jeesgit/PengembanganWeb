@@ -1,69 +1,247 @@
 import { Plus } from "lucide-react";
+import { useState } from "react";
 import './TabelPresensi.css';
+import $ from 'jquery';
 
 function TabelPresensi(){
+  const [isOpen, setIsOpen] = useState(true);
+      const [formData, setFormData] = useState({
+        nama: "Jees",
+        jamMasuk: "07:30",
+        jamPulang: "16:30",
+        status: "Hadir",
+        keterangan:
+          "Tepat Waktu, tidak terlambat, kerjakan tugas, patuhi aturan",
+      });
     
-    // Ambil elemen
-    const openBtn = document.getElementById('openModal');
-    const closeBtn = document.getElementById('closeModal');
-    const modal = document.getElementById('myModal');
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("Data disimpan!\n\n" + JSON.stringify(formData, null, 2));
+        console.log("Data presensi:", formData);
+        setIsOpen(false);
+      };
+    
+      if (!isOpen) return null;
 
-    // Tampilkan modal
-    openBtn.addEventListener('click', ()=>{
-        modal.classList.remove('hidden');
-    });
+  $(document).ready(function(){
+        //Javascript modal detail mulai dari sini
+        // Ambil elemen
+      const openModalDetail = document.getElementById("openModalDetail");
+      const closeModalDetail = document.getElementById("closeModalDetail");
+      const modalDetail = document.getElementById("modalDetail");
+      const okDetail = document.getElementById("okDetail");
 
-    // Sembunyikan modal
-    closeBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
+      // Buka modal
+      openModalDetail.addEventListener("click", () => {
+        modalDetail.classList.remove('hidden')
+      });
 
-    // Klik di luar modal juga menutup modal
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-      }
+      // Tutup modal
+      closeModalDetail.addEventListener("click", () => {
+        modalDetail.classList.add("hidden");
+      });
+
+      okDetail.addEventListener("click", () => {
+        modalDetail.classList.add("hidden");
+      });
+
+      // Tutup modal kalau klik di luar box
+      modalDetail.addEventListener("click", (e) => {
+        if (e.target === modalDetail) {
+          modalDetail.classList.add("hidden");
+        }
+      });
+
+      //DOM Modal Edit
+      const openModalEdit = document.getElementById("openModalEdit");
+      const closeModalEdit = document.getElementById("closeModalEdit");
+      const modalEdit = document.getElementById("modalEdit");
+      const okEdit = document.getElementById("okEdit");
+
+      // Buka modal
+      openModalEdit.addEventListener("click", () => {
+        modalEdit.classList.remove("hidden");
+      });
+
+      // Tutup modal
+      closeModalEdit.addEventListener("click", () => {
+        modalEdit.classList.add("hidden");
+      });
+
+      okEdit.addEventListener("click", () => {
+        modalEdit.classList.add("hidden");
+      });
+
+      // Tutup modal kalau klik di luar box
+      modalEdit.addEventListener("click", (e) => {
+        if (e.target === modalEdit) {
+          modalEdit.classList.add("hidden");
+        }
+      });
     });
     return (
         <div>
-            <div id="myModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                <div class="bg-white p-6 rounded shadow-lg w-96">
+            {/*komponen detail mulai dari sini*/}
+          <div
+          id="modalDetail"
+          class="fixed inset-0 bg-opacity-50 flex items-center justify-center hidden"
+          >
+            <div class="bg-white rounded-xl shadow-lg w-96 p-6 relative">
+              
+                <button
+                  id="closeModalDetail"
+                  class="top-2 right-2 text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+
                 <h2 class="text-xl font-semibold mb-4">Detail Presensi</h2>
                 <div>
-                    <table className="table-auto w-full">
-                        <tr className="flex justify-between">
-                            <td>Nama</td>
-                            <td>Jees</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Jam Masuk</td>
-                            <td>07:30</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Jam Pulang</td>
-                            <td>16:00</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Status Presensi</td>
-                            <td>Hadir</td>
-                        </tr>
-                        <tr className="flex justify-between border-t">
-                            <td>Keterangan :</td>
-                        </tr>
-                        <tr className="flex justify-between text-start">
-                            <td>
-                                Tepat Waktu adalah sikap yang patut dicontoh oleh banyak orang
-                            </td>
-                        </tr>
-                    </table>
+                    <form class="space-y-3">
+
+                    <div class="flex justify-between border-b border-gray-200 pb-1">
+                        <label class="text-gray-600">Nama</label>
+                        <span class="font-medium text-gray-800">Jees</span>
+                    </div>
+
+                    <div class="flex justify-between border-b border-gray-200 pb-1">
+                        <label class="text-gray-600">Jam Masuk</label>
+                        <span class="font-medium text-gray-800">07:30</span>
+                    </div>
+
+                    <div class="flex justify-between border-b border-gray-200 pb-1">
+                        <label class="text-gray-600">Jam Pulang</label>
+                        <span class="font-medium text-gray-800">16:30</span>
+                    </div>
+
+                    <div class="flex justify-between border-b border-gray-200 pb-1">
+                        <label class="text-gray-600">Status Presensi</label>
+                        <span class="font-medium text-green-600">Hadir</span>
+                    </div>
+
+                    <div className="text-start">
+                        <label class="text-gray-600">Keterangan :</label>
+                        <p class="mt-1 text-gray-800 text-sm leading-snug">
+                        Tepat Waktu, tidak terlambat, kerjakan tugas, patuhi aturan
+                        </p>
+                    </div>
+                    </form>
                 </div>
-                <div class="flex justify-end">
-                    <button id="closeModal" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-                    Tutup
-                    </button>
+
+                <div className="flex justify-end">
+                      <button
+                      id="okDetail"
+                      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:cursor-pointer"
+                      >
+                      Oke
+                      </button>
                 </div>
-                </div>
-            </div>
+          </div>
+        </div>  
+    {/*..*/}
+
+    {/*komponen modal edit mulai dari sini */}
+      <div id="modalEdit" className="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div className="bg-white rounded-xl shadow-xl w-96 p-6 relative">
+          {/* Tombol Close */}
+          <button
+          id="closeModalEdit"
+            onClick={() => setIsOpen(true)}
+            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+          >
+            ✕
+          </button>
+          {/* Judul */}
+          <h2 className="text-xl font-semibold text-center mb-4">
+            Edit Presensi
+          </h2>
+
+          {/* Form */}
+          <div>
+            <form className="space-y-3">
+              {/* Nama */}
+              <div className="flex justify-between items-center border-b border-gray-200 pb-1">
+                <label className="text-gray-600">Nama</label>
+                <input
+                  type="text"
+                  name="nama"
+                  value={formData.nama}
+                  onChange={handleChange}
+                  className="text-right w-1/2 focus:outline-none font-medium text-gray-800"
+                />
+              </div>
+              {/* Jam Masuk */}
+              <div className="flex justify-between items-center border-b border-gray-200 pb-1">
+                <label className="text-gray-600">Jam Masuk</label>
+                <input
+                  type="time"
+                  name="jamMasuk"
+                  value={formData.jamMasuk}
+                  onChange={handleChange}
+                  className="text-right w-1/2 focus:outline-none font-semibold text-gray-800"
+                />
+              </div>
+              {/* Jam Pulang */}
+              <div className="flex justify-between items-center border-b border-gray-200 pb-1">
+                <label className="text-gray-600">Jam Pulang</label>
+                <input
+                  type="time"
+                  name="jamPulang"
+                  value={formData.jamPulang}
+                  onChange={handleChange}
+                  className="text-right w-1/2 focus:outline-none font-semibold text-gray-800"
+                />
+              </div>
+              {/* Status Presensi */}
+              <div className="flex justify-between items-center border-b border-gray-200 pb-1">
+                <label className="text-gray-600">Status Presensi</label>
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  className={`text-right w-1/2 focus:outline-none font-semibold ${
+                    formData.status === "Hadir"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  <option value="Hadir">Hadir</option>
+                  <option value="Izin">Izin</option>
+                  <option value="Sakit">Sakit</option>
+                  <option value="Alpha">Alpha</option>
+                </select>
+              </div>
+              {/* Keterangan */}
+              <div className="text-left">
+                <label className="text-gray-600">Keterangan :</label>
+                <textarea
+                  name="keterangan"
+                  value={formData.keterangan}
+                  onChange={handleChange}
+                  rows="3"
+                  className="w-full text-gray-800 mt-1 border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+                ></textarea>
+              </div>
+              {/* Tombol Submit */}
+              <div className="text-right mt-4">
+                <button
+                id="okEdit"
+                  type="submit"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg focus:outline-none"
+                >
+                  Oke
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    {/*..*/}
 
             <div className="bg-blue-700 text-white hover:cursor-pointer">
                 <Plus className="inline" /> Tambah Presensi 
@@ -90,14 +268,15 @@ function TabelPresensi(){
                         <td>Hadir</td>
                         <td className="hidden sm:table-cell">Tepat Waktu</td>
                         <div className="flex flex-wrap justify-evenly">
-                            <td><button id="openModal" type="button" className="detail bg-gray-500 w-13 text-white text-sm rounded hover:cursor-pointer">Detail</button></td>
-                            <td><button type="button" className=" bg-green-500 w-13 text-white text-sm rounded hover:cursor-pointer">Edit</button></td>
+                            <td><button id="openModalDetail" type="button" className="detail bg-gray-500 w-13 text-white text-sm rounded hover:cursor-pointer">Detail</button></td>
+                            <td><button 
+                             type="button" id="openModalEdit" className=" bg-green-500 w-13 text-white text-sm rounded hover:cursor-pointer">Edit</button></td>
                             <td><button type="button" className=" bg-red-500 w-13 text-white text-sm rounded hover:cursor-pointer">Hapus</button></td>
                         </div>
                     </tr>
                 </tbody>
             </table>
-        </div>
+       </div>
     )
 }
 

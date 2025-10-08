@@ -1,4 +1,6 @@
 import TabelPresensi from "../components/TabelPresensi";
+import ModalEditPresensi from '../components/ModalEditPresensi';
+import Login from "../components/Login";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 
@@ -7,6 +9,8 @@ export default function App(){
         <BrowserRouter>
             <Routes>
                 <Route path="/presensi" element={<TabelPresensi/>} />
+                <Route path="/modal-presensi" element={<ModalEditPresensi/>} />
+                <Route path="/login" element={<Login/>} />
                 <Route path="*" element={<NoMatch/>} />
             </Routes>
         </BrowserRouter>
