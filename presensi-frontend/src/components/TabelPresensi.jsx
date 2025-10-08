@@ -1,8 +1,6 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { useState } from "react";
 import './TabelPresensi.css';
-import $ from 'jquery';
 import $ from 'jquery';
 
 function TabelPresensi(){
@@ -97,7 +95,7 @@ function TabelPresensi(){
               
                 <button
                   id="closeModalDetail"
-                  class="top-2 right-2 text-gray-500 hover:text-gray-700"
+                  class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                 >
                   ✕
                 </button>
