@@ -1,6 +1,8 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { useState } from "react";
 import './TabelPresensi.css';
+import $ from 'jquery';
 import $ from 'jquery';
 
 function TabelPresensi(){

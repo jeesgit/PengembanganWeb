@@ -1,7 +1,7 @@
 const express = require('express');
-const app = express();
 const productRoutes = require('./routes/products');
 
+const app = express();
 app.use(express.json());    //middleware parsing json
 app.use('/products', productRoutes);    //prefix endpoint
 
