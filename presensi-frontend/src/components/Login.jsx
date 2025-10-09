@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { error } from "jquery";
+
+let data = [{username:"Jees", password:"jees123", role:"Siswa"}];
 
 const Login = () => {
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    role: "",
+    role: ""
   });
+
+  const [err, setErr] = useState({
+    username:"",
+    password:"",
+    role:""
+  });
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
@@ -18,8 +29,30 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login data:", formData);
-    alert(`Login sebagai ${formData.role || "?"}`);
+    let user = formData.username;
+    let pass = formData.password;
+    let rl = formData.role;
+    let errors = err;
+
+    if(user !== data[0].username){
+        errors.username = "user tidak ditemukan";
+    }else if(pass !== data[0].password){
+        errors.password = "username dan/atau password salah"
+    }
+    setErr(errors);
+    let formValid = true;
+    for (let properti in errors){
+        if(errors[properti].length >= 1){
+            formValid = false;
+            alert(`${errors[properti]}`);
+            return;
+        }
+    }
+
+    if(formValid){
+            alert(`Login sebagai ${formData.role || "?"}`);
+    }
+
   };
 
   return (
@@ -44,6 +77,9 @@ const Login = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
               required
             />
+            {err.username && (
+                <p className="text-red-500" >{err.username}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -73,6 +109,9 @@ const Login = () => {
                 )}
               </button>
             </div>
+            {err.password && (
+                <p className="text-red-500" >{err.password}</p>
+            )}
           </div>
 
           {/* Role */}
@@ -92,6 +131,9 @@ const Login = () => {
               <option value="Pegawai">Pegawai</option>
               <option value="Admin">Admin</option>
             </select>
+            {err.role && (
+                <p className="text-red-500" >{err.role}</p>
+            )}
           </div>
 
           {/* Tombol Login */}
