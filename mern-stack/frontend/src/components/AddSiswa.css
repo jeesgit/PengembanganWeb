@@ -1,0 +1,16 @@
+input[type="text"]{
+    outline-width: 0;
+}
+
+input[type="email"]{
+    outline-width: 0;
+}
+
+select{
+    outline-width: 0;
+}
+
+input[type="date"]{
+    outline-width: 0;
+    border:1px solid lightgray;
+}

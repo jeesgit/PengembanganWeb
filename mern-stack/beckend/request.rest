@@ -1,0 +1,32 @@
+GET http://localhost:5000/api/siswa
+
+###
+GET http://localhost:5000/api/siswa/7
+
+###
+POST http://localhost:5000/api/siswa
+Content-Type: application/json
+
+{
+    "kodeSiswa":19982027,
+    "namaSiswa":"Jees",
+    "emailSiswa":"jees@gmail.com",
+    "jenisKelamin":"laki-laki",
+    "tanggalLahir":"1998-04-04"
+}
+
+###
+PUT http://localhost:5000/api/siswa/4
+Content-Type: application/json
+
+{
+    "kodeSiswa":19982028,
+    "namaSiswa":"Jees apdated",
+    "emailSiswa":"jeesupdate@gmail.com",
+    "jenisKelamin":"laki-laki",
+    "tanggalLahir":"1998-04-04"
+}
+
+###
+DELETE http://localhost:5000/api/siswa/6
+
